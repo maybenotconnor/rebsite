@@ -1,39 +1,27 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
-import { getEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 
-const projectEntries = await getCollection("projects");
-const projects = projectEntries.sort((a, b) => {
-  const yearA = parseInt(a.data.date.split('-').pop());
-  const yearB = parseInt(b.data.date.split('-').pop());
-  return yearB - yearA;
-});
+export async function getStaticPaths() {
+  const projectEntries = await getCollection("projects");
+  const projects = projectEntries.sort((a, b) => {
+    const yearA = parseInt(a.data.date.split('-').pop());
+    const yearB = parseInt(b.data.date.split('-').pop());
+    return yearB - yearA;
+  });
 
-const { slug } = Astro.params;
-
-if (slug === undefined) {
-  throw new Error("Slug is required");
+  return projects.map((entry, index) => ({
+    params: { slug: entry.slug },
+    props: {
+      entry,
+      previous: index > 0 ? projects[index - 1] : null,
+      next: index < projects.length - 1 ? projects[index + 1] : null,
+    },
+  }));
 }
 
-const entry = await getEntry("projects", slug);
-
-if (entry === undefined) {
-  return Astro.redirect("/404");
-}
-
-let previous = null, next = null;
-
-const currentIndex = projects.findIndex(entry => entry.slug === slug);
-
-if (currentIndex > 0) {
-  previous = projects[currentIndex - 1];
-}
-
-if (currentIndex < projects.length - 1) {
-  next = projects[currentIndex + 1];
-}
-
+const { entry, previous, next } = Astro.props;
 const { Content } = await entry.render();
 const { title, image, gallery, date, tag, location, role, credit, link } = entry.data;
 ---

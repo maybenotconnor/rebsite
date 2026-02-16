@@ -148,4 +148,36 @@ All commands are run from the root of the project:
 
 ## Deployment
 
-The site is configured to deploy on Vercel (`astro.config.mjs` uses the Vercel adapter with server-side rendering).
+The site builds to static HTML in `dist/` and is designed to be served with nginx.
+
+### Build
+
+```sh
+bun run build
+```
+
+### nginx Configuration
+
+```nginx
+server {
+    listen 80;
+    server_name rmristow.com www.rmristow.com;
+
+    root /var/www/rmristow.com/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ $uri.html =404;
+    }
+
+    # Cache static assets
+    location ~* \.(css|js|jpg|jpeg|png|webp|svg|woff2?)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    error_page 404 /404.html;
+}
+```
+
+Copy the built `dist/` directory to your server and point nginx at it. For HTTPS, add your SSL config or use certbot.
