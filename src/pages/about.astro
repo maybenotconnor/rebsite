@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+import headshot from '../assets/headshot.jpg';
+---
+
+<Layout title="About | R.M. Ristow">
+  <div class="relative">
+    <div class="mx-auto px-8 md:max-w-7xl">
+      <section class="py-12 md:py-20">
+        <h1 class="font-heading text-4xl md:text-6xl font-light tracking-wide mb-6">Hi, I'm Rebecca,</h1>
+        <p class="font-heading text-lg md:text-xl font-light text-zinc-600 mb-12 max-w-3xl">A theatre artist, marketing professional, and community engagement coordinator.</p>
+
+        <div class="flex flex-col md:flex-row gap-10 md:gap-16">
+          <div class="flex-1 order-2 md:order-1">
+            <div class="space-y-5 text-zinc-700 leading-relaxed">
+              <p>Though my undergraduate studies focused on directing, my passions align strongly with arts administration and community engagement. Currently, I work with The Bushnell in Hartford, CT as Assistant Manager of Producing and Production.</p>
+
+              <p>At The Bushnell, I lead projects across the planning stages, as well as ensure success at various milestones. Budgeting, scheduling, feasibility, engagement, and theatrical production are my strong suits! I am also an on-site manager for The Warner in Torrington, where I am currently assisting with The Bushnell Digital Institute.</p>
+
+              <p>Prior to this, I was The Front of House Operations and Audience Services Manager at University of Hartford. While there, I used knowledge developed by my MBA to increase department revenue by ~$10k and performance attendance by 23% in one year through strategic analysis of patron data and targeted marketing initiatives.</p>
+
+              <p>I have a diverse theatrical background in assistant directing (Hartford Stage, TheaterWorks Hartford), as well as theatrical production and technical roles. I assisted Artistic Director Melia Bensussen on numerous projects, including several regionally accredited plays. I also had the privilege of being mentored by director Cristina Angeles on <em>Queen of Basel</em> (TheaterWorks) and director Tim Golebiewski on <em>The 25th Annual Putnam County Spelling Bee</em> (Eastern Connecticut State University), which was recognized by The Kennedy Center for exceptional ensemble and received merit in several areas of design and directing.</p>
+
+              <p>I have several accredited works, including dramaturgical research for <em>Oedipus the King</em>, which was selected for several research conferences. This work, which involved a 20-page dramaturgical packet, was the LMDA / Kennedy Center American College Theater Festival's Honorable Mention for dramaturgy in 2023. In addition to this, my research "Puppetry as Parody: The Muppets as Remediation and Social Commentary" was selected for presentation at The CREATE Arts Conference.</p>
+
+              <p>Outside of theatre, I enjoy film production and working on independent films with other like-minded creatives. For the last four years, I have been working as an actress, screenwriter, and crew member for independent film company Marsley Films. I have helped produce several independent short films and one feature length title, <em>Spring Cling</em>. This title had a limited screening in Mystic, CT and is available to watch on YouTube.</p>
+
+              <p>When I'm not creating performance pieces, you can catch me listening to pop-punk music, playing the drums, drawing, rewatching The Muppets movies, and planning all my outfits for the week!</p>
+            </div>
+          </div>
+          <div class="w-full md:w-1/3 shrink-0 order-1 md:order-2">
+            <Image src={headshot} alt="Rebecca May Ristow" width={400} class="w-full h-auto" />
+            <p class="text-xs text-zinc-400 mt-2">Photo: Daniel Gallipoli</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

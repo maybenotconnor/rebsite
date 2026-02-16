@@ -1,8 +1,8 @@
 {
-  "title": "Minimma",
-  "description": "Minimal portfolio template",
+  "title": "R.M. Ristow",
+  "description": "Rebecca May Ristow — Theatre Artist & Administrator",
   "base_url": "/",
-  "keywords": ["astro", "template"],
+  "keywords": ["theatre", "portfolio", "arts administration", "directing", "dramaturgy", "film"],
   "logo": "assets/m.png",
   "favicon": "assets/m_w.png",
   "url": "/"

@@ -1,55 +1,151 @@
-# Astro Starter Kit: Basics
+# Rebecca May Ristow — Portfolio Site
+
+Portfolio website for Rebecca May Ristow, built with [Astro](https://astro.build) and Tailwind CSS.
+
+## Project Structure
 
 ```
-npm create astro@latest -- --template basics
+src/
+├── assets/                  # All images (headshot, project photos)
+├── components/
+│   ├── Card.astro           # Project card (used in portfolio grid)
+│   ├── Footer.astro         # Site footer (email, social links)
+│   ├── Header.astro         # Navigation bar
+│   └── Hero.astro           # Hero component (currently unused)
+├── content/
+│   ├── projects/            # Portfolio project entries (markdown)
+│   └── settings/            # Site configuration (JSON)
+├── layouts/
+│   └── Layout.astro         # Base page layout
+├── pages/
+│   ├── index.astro          # Home page
+│   ├── about.astro          # About page
+│   ├── portfolio.astro      # Portfolio grid page
+│   ├── resume.astro         # Resume page (PDF embed + download)
+│   └── project/
+│       └── [...slug].astro  # Individual project detail page
+└── scripts/
+    └── config.ts
+public/
+└── resume.pdf               # Downloadable resume
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## How to Change Content
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Site Name, Description & SEO
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+Edit `src/content/settings/general.json`:
 
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```json
+{
+  "title": "R.M. Ristow",
+  "description": "Rebecca May Ristow — Theatre Artist & Administrator",
+  "keywords": ["theatre", "portfolio", ...]
+}
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Social Links (Footer)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Edit `src/content/settings/footer.json`:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```json
+{
+  "socials": [
+    { "target": "_blank", "name": "Instagram", "link": "https://instagram.com/yourhandle" },
+    { "target": "_blank", "name": "LinkedIn", "link": "https://linkedin.com/in/yourprofile" }
+  ]
+}
+```
 
-## 🧞 Commands
+The email address in the footer is hardcoded in `src/components/Footer.astro`.
 
-All commands are run from the root of the project, from a terminal:
+### Portfolio Tags
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+Edit `src/content/settings/project.json`:
 
-## 👀 Want to learn more?
+```json
+{
+  "project_tags": ["Theatre", "Film"]
+}
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Adding or Editing a Project
+
+Each project is a markdown file in `src/content/projects/`. Create a new `.md` file or edit an existing one.
+
+**Frontmatter fields:**
+
+| Field      | Required | Description                                          |
+|:-----------|:---------|:-----------------------------------------------------|
+| `title`    | Yes      | Project name                                         |
+| `image`    | Yes      | Cover image path (relative to `src/`, e.g. `assets/hartford-stage-1.jpg`) |
+| `gallery`  | No       | Array of additional image paths for the detail page   |
+| `date`     | Yes      | Date or date range as a string (e.g. `"2024"`, `"2023-2025"`) |
+| `tag`      | Yes      | Array of tags (e.g. `["Theatre"]` or `["Film"]`)      |
+| `location` | No       | Location (e.g. `Hartford, CT`)                        |
+| `role`     | No       | Role on the project (e.g. `Assistant Director`)       |
+| `credit`   | No       | Photo/credit attribution                              |
+| `link`     | No       | External link object with `text` and `url` fields     |
+
+**Example project file** (`src/content/projects/my-project.md`):
+
+```markdown
+---
+tag:
+  - Theatre
+title: My New Project
+image: assets/my-project-cover.jpg
+gallery:
+  - assets/my-project-2.jpg
+  - assets/my-project-3.jpg
+date: "2025"
+location: Hartford, CT
+role: Director
+credit: "Photos By: Jane Doe"
+link:
+  text: Watch the trailer
+  url: https://youtube.com/watch?v=example
+---
+
+Description of the project goes here. This is rendered as markdown on the
+project detail page.
+```
+
+The body text (below the `---`) is the project description shown on the detail page.
+
+### Adding Project Images
+
+1. Place image files in `src/assets/` using the naming convention `{project-slug}-{n}.jpg`
+2. Reference them in the project's frontmatter under `image` (cover) and `gallery` (additional)
+3. Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`
+
+### Editing the Home Page
+
+The home page content (hero text, bio paragraphs) is in `src/pages/index.astro`. Edit the HTML directly.
+
+### Editing the About Page
+
+The about page content is in `src/pages/about.astro`. Edit the paragraph text directly in the file.
+
+### Updating the Resume
+
+Replace `public/resume.pdf` with a new PDF file. The resume page embeds this PDF and provides a download link.
+
+### Navigation
+
+Nav links are defined in `src/components/Header.astro` in the `navLinks` array. Add or remove entries there.
+
+## Commands
+
+All commands are run from the root of the project:
+
+| Command            | Action                                       |
+|:-------------------|:---------------------------------------------|
+| `pnpm install`     | Install dependencies                         |
+| `pnpm dev`         | Start local dev server at `localhost:4321`    |
+| `pnpm build`       | Build production site to `./dist/`            |
+| `pnpm preview`     | Preview the build locally before deploying    |
+
+## Deployment
+
+The site is configured to deploy on Vercel (`astro.config.mjs` uses the Vercel adapter with server-side rendering).

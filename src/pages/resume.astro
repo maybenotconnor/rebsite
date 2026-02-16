@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Resume | R.M. Ristow">
+  <div class="relative">
+    <div class="mx-auto px-8 md:max-w-7xl">
+      <section class="py-12 md:py-20">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-12">
+          <h1 class="font-heading text-4xl md:text-5xl font-light tracking-wide">Resume</h1>
+          <a href="/resume.pdf" target="_blank" rel="noopener" class="inline-block border border-zinc-900 px-6 py-3 text-sm tracking-wide hover:bg-zinc-900 hover:text-white transition-colors no-underline">Download Resume</a>
+        </div>
+        <div class="w-full aspect-[8.5/11] max-w-4xl">
+          <object data="/resume.pdf" type="application/pdf" class="w-full h-full min-h-[600px] md:min-h-[800px]">
+            <p class="text-zinc-600">Your browser doesn't support embedded PDFs. <a href="/resume.pdf" class="underline">Download the resume</a> instead.</p>
+          </object>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

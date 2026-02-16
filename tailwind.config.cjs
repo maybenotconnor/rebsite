@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ["Inconsolata", ...defaultTheme.fontFamily.serif],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        heading: ["Josefin Sans", ...defaultTheme.fontFamily.sans],
       },
     },
   },

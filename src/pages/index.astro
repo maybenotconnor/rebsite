@@ -1,117 +1,63 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import Hero from '../components/Hero.astro';
+
+import headshot from '../assets/headshot.jpg';
 
 const allProjects = await getCollection('projects');
-const projects = allProjects.sort((a,b)=>{return b.data.date - a.data.date});
+const projects = allProjects.sort((a, b) => {
+  const yearA = parseInt(a.data.date.split('-').pop());
+  const yearB = parseInt(b.data.date.split('-').pop());
+  return yearB - yearA;
+});
 ---
 
-<Layout title="Welcome to Astro.">
-  <script>
-    const masonry = () =>{
-      const portfolio = document.querySelector('.portfolio')
-      let column = 3;
-
-      const responsive = [
-        {
-          breakpoint: 1280,
-          column: 3,
-        },
-        {
-          breakpoint: 1024,
-          column: 2,
-        },
-        {
-          breakpoint: 768,
-          column: 1,
-        },
-      ];
-
-      const winWidth = window.innerWidth;
-
-      for (let i = 0; i < responsive.length; i++) {
-        if (winWidth <= responsive[i].breakpoint) {
-          column = responsive[i].column;
-        }
-      }
-
-      if (column === 1) {
-        const listElms = Array.prototype.slice.call(
-          portfolio.querySelectorAll("figure"),
-          0
-        );
-        listElms.forEach((listElm) => {
-          listElm.style.marginTop = "";
-        });
-
-        return false;
-      }
-
-      const listElms = Array.prototype.slice.call(
-        portfolio.querySelectorAll("figure"),
-        0
-      );
-
-      if (listElms.length === 0) {
-        return false;
-      }
-
-      listElms.forEach((listElm, index) => {
-        listElm.style.marginTop = "";
-
-        if (column > index) {
-          return;
-        }
-
-        const topListElm = listElms[index - column];
-        const topListElmPosi = topListElm.getBoundingClientRect().top;
-        const topListHeight = getHeightAndMarginBottom(topListElm);
-        const topListBottomPosi = topListElmPosi + topListHeight;
-        const listElmPosi = listElm.getBoundingClientRect().top;
-        let setPosi = listElmPosi.toFixed(0) - topListBottomPosi.toFixed(0) - 16;
-
-        if (setPosi === 0) {
-          return false;
-        }
-
-        setPosi = "-" + setPosi + "px";
-        listElm.style.marginTop = setPosi;
-      });
-    }
-
-    const getHeightAndMarginBottom= (elm) =>{
-      const height = elm.getBoundingClientRect().height;
-      const styles = getComputedStyle(elm);
-      const bottom = parseFloat(styles.marginBottom);
-      return height + bottom;
-    }
-
-    masonry();
-
-    window.addEventListener("resize", () => {
-      masonry();
-    });
-    document.addEventListener("DOMContentLoaded",()=>{
-      masonry();
-    });
-    document.addEventListener('astro:page-load', () => {
-      masonry();
-    });
-  </script>
-
+<Layout title="Rebecca May Ristow | Theatre Artist & Administrator">
   <div class="relative">
     <div class="mx-auto px-8 md:max-w-7xl">
-      <Hero />
-      <div class="relative w-full mt-5 mb-10">
-        <div class="clear-both relative">
-          <div class="grid flex-wrap items-start grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 portfolio gap-8 ">
-            {projects.map((project,index)=><Card index={index+1} slug={project.slug} title={project.data.title} image={project.data.image} tags={project.data.tag} />)}
+
+      <!-- Hero Section -->
+      <section class="py-12 md:py-20">
+        <h1 class="font-heading text-5xl md:text-7xl font-light tracking-wide mb-12">Rebecca May Ristow</h1>
+        <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+          <div class="w-full md:w-1/3 shrink-0">
+            <Image src={headshot} alt="Rebecca May Ristow" width={400} class="w-full h-auto" />
+            <p class="text-xs text-zinc-400 mt-2">Photo: Daniel Gallipoli</p>
+          </div>
+          <div class="flex-1">
+            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Theatre Artist & Administrator</h2>
+            <div class="space-y-4 text-zinc-700 leading-relaxed">
+              <p>Hello! I'm Rebecca, the Assistant Manager of Production at The Bushnell in Hartford, CT. Though my undergraduate studies focused on directing, my passions align strongly with arts administration and community engagement.</p>
+              <p>I received my MBA at University of Hartford, where I studied Marketing. I hope to use this degree to further my work uplifting non-profits in the arts sector.</p>
+              <p>I have various theatre experiences under my belt including directing and education, as well as regionally recognized dramaturgical work. Recently, I worked as an assistant director for Hartford Stage as well as TheaterWorks Hartford. I am always looking for more work in the performing arts and community engagement.</p>
+            </div>
+            <div class="mt-8">
+              <a href="/portfolio" class="inline-block border border-zinc-900 px-6 py-3 text-sm tracking-wide hover:bg-zinc-900 hover:text-white transition-colors">View Portfolio</a>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Portfolio Preview Section -->
+      <section class="py-12 md:py-20 border-t border-zinc-200">
+        <h2 class="font-heading text-3xl md:text-4xl font-light tracking-wide text-center mb-4">My Project Portfolio</h2>
+        <div class="text-center mb-4">
+          <h3 class="font-heading text-lg font-light tracking-wide">Explore My Work</h3>
+        </div>
+        <p class="text-center text-zinc-600 mb-12 max-w-lg mx-auto">Head to my portfolio to see a selection of my theatrical and film projects!</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <Card slug={project.slug} title={project.data.title} image={project.data.image} tags={project.data.tag} />
+          ))}
+        </div>
+        <div class="text-center mt-12">
+          <a href="/portfolio" class="inline-block border border-zinc-900 px-6 py-3 text-sm tracking-wide hover:bg-zinc-900 hover:text-white transition-colors">View More Projects</a>
+        </div>
+      </section>
+
     </div>
   </div>
 </Layout>

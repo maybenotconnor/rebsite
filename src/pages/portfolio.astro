@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => {
+  const yearA = parseInt(a.data.date.split('-').pop());
+  const yearB = parseInt(b.data.date.split('-').pop());
+  return yearB - yearA;
+});
+---
+
+<Layout title="Portfolio | R.M. Ristow">
+  <div class="relative">
+    <div class="mx-auto px-8 md:max-w-7xl">
+      <section class="py-12 md:py-20">
+        <h1 class="font-heading text-4xl md:text-5xl font-light tracking-wide text-center mb-16">My Portfolio</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <Card slug={project.slug} title={project.data.title} image={project.data.image} tags={project.data.tag} />
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

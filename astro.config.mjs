@@ -1,17 +1,16 @@
 import { defineConfig, squooshImageService } from "astro/config";
 
 import robots from "astro-robots";
-import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://minimma.vercel.app",
+  site: "https://rmristow.com",
   image: {
     service: squooshImageService(),
   },
-  integrations: [tailwind(), sitemap(), robots()],
+  integrations: [tailwind(), robots()],
   output: "server",
   adapter: vercel(),
 });
