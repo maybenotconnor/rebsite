@@ -141,10 +141,10 @@ All commands are run from the root of the project:
 
 | Command            | Action                                       |
 |:-------------------|:---------------------------------------------|
-| `pnpm install`     | Install dependencies                         |
-| `pnpm dev`         | Start local dev server at `localhost:4321`    |
-| `pnpm build`       | Build production site to `./dist/`            |
-| `pnpm preview`     | Preview the build locally before deploying    |
+| `bun install`      | Install dependencies                         |
+| `bun run dev`      | Start local dev server at `localhost:4321`    |
+| `bun run build`    | Build production site to `./dist/`            |
+| `bun run preview`  | Preview the build locally before deploying    |
 
 ## Deployment
 
