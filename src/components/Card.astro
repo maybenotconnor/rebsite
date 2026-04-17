@@ -8,7 +8,7 @@ const { slug, title, image, tags } = Astro.props;
   <div class="relative">
     <a href={`/project/${slug}`} class="no-underline relative block" aria-label={title}>
       <span class="relative block transition duration-500 ease-in-out transform rounded hover:scale-105 aspect-square overflow-hidden">
-        <Image width={384} class="relative block object-cover object-center w-full h-full" loading="lazy" alt={title} src={image}>
+        <Image width={800} densities={[1, 2]} class="relative block object-cover object-center w-full h-full" loading="lazy" alt={title} src={image} />
       </span>
     </a>
   </div>
