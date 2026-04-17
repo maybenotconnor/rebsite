@@ -10,17 +10,14 @@ const email = 'rebeccamristow@gmail.com';
   <div class="relative">
     <div class="mx-auto px-8 md:max-w-7xl">
       <section class="py-12 md:py-20">
-        <h1 class="font-heading text-5xl md:text-7xl font-light tracking-wide mb-6">Let's Connect</h1>
+        <h1 class="font-heading text-5xl md:text-7xl font-bold tracking-wide mb-6">Let's Connect</h1>
         <p class="font-heading text-lg md:text-xl font-light text-zinc-600 mb-12 max-w-3xl">
           Always looking for new opportunities in theatre, film, and community engagement. Reach out below.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
           <div>
-            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-4">Email</h2>
-            <p class="text-zinc-700 leading-relaxed mb-4">
-              The best way to get in touch is by email. I try to respond within a few days.
-            </p>
+            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Email</h2>
             <a
               href={`mailto:${email}`}
               class="inline-block border border-sage-700 text-sage-700 px-6 py-3 text-sm tracking-wide hover:bg-sage-700 hover:text-white transition-colors break-all"
@@ -30,10 +27,7 @@ const email = 'rebeccamristow@gmail.com';
           </div>
 
           <div>
-            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-4">Elsewhere</h2>
-            <p class="text-zinc-700 leading-relaxed mb-4">
-              Follow along or send a message on social.
-            </p>
+            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Elsewhere</h2>
             <ul class="flex flex-col gap-3">
               {footer.data.socials.map(social => (
                 <li>
