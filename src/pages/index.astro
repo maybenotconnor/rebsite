@@ -6,6 +6,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 import headshot from '../assets/headshot.jpg';
+import burnBookCabaret from '../assets/burn-book-cabaret.png';
 
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => {
@@ -31,12 +32,30 @@ const projects = allProjects.sort((a, b) => {
             <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Theatre Artist & Administrator</h2>
             <div class="space-y-4 text-zinc-700 leading-relaxed">
               <p>Rebecca May Ristow is a Hartford based production manager, producer, and director. She is currently developing new works and managing productions at The Bushnell Center for the Performing Arts, serving as Assistant Manager of Producing and Production. She is a Summa Cum Laude graduate with both a BA in Theatre (Directing & Dramaturgy) and an MBA (Marketing).</p>
-              <p>Outside of The Bushnell, Rebecca is a frequent collaborator in the Greater Hartford arts sphere, producing independent films, assistant directing at TheaterWorks and Hartford Stage, and volunteering with various local non-profits. Previous to her current role, she spent three years as a manager in the performance operations department at University of Hartford, specializing in patron communication and outreach.</p>
+              <p>Outside of The Bushnell, Rebecca is a frequent collaborator in the Greater Hartford arts sphere, producing independent films, assistant directing at TheaterWorks and Hartford Stage, and volunteering with various local non-profits. She is currently serving a 3-year term on The Hartford Stage young professionals board, assisting in non-profit advocacy. Previous to her current role, she spent three years as a manager in the performance operations department at University of Hartford, specializing in patron communication and outreach.</p>
               <p>She is most passionate about life-long learning and growing accessibility within the arts community!</p>
             </div>
             <div class="mt-8">
               <a href="/portfolio" class="inline-block border border-zinc-900 px-6 py-3 text-sm tracking-wide hover:bg-sage-700 hover:border-sage-700 hover:text-white transition-colors">View Portfolio</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Upcoming Section -->
+      <section class="py-12 md:py-20 border-t border-zinc-200">
+        <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+          <div class="flex-1 order-2 md:order-1">
+            <h2 class="font-heading text-4xl md:text-5xl font-light italic tracking-wide mb-6">upcoming...</h2>
+            <p class="text-zinc-700 leading-relaxed mb-8">
+              Rebecca is making her NYC directing and producing debut at <strong>54 Below</strong> on November 13th at 9:30pm! <em>The Burn Book Cabaret</em> is an evening celebrating musical theatre's meanest. Tonight, you <em>can</em> sit with us.
+            </p>
+            <a href="http://54below.org/burnbook" target="_blank" rel="noopener noreferrer" class="inline-block bg-zinc-700 text-white px-10 py-3 text-sm tracking-wide hover:bg-sage-700 transition-colors">Tickets</a>
+          </div>
+          <div class="w-full md:w-1/2 order-1 md:order-2">
+            <a href="http://54below.org/burnbook" target="_blank" rel="noopener noreferrer">
+              <Image src={burnBookCabaret} alt="The Burn Book Cabaret at 54 Below — November 13th" class="w-full h-auto" />
+            </a>
           </div>
         </div>
       </section>
