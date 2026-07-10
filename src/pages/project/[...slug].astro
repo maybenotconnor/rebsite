@@ -77,9 +77,9 @@ const { title, image, gallery, date, tag, location, role, credit, link } = entry
         <!-- Gallery -->
         {gallery && gallery.length > 0 && (
           <div class="max-w-5xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="columns-1 md:columns-2 gap-4">
               {gallery.map((img, i) => (
-                <div class={i === 0 || (gallery.length % 2 !== 0 && i === gallery.length - 1) ? 'md:col-span-2' : ''}>
+                <div class="mb-4 break-inside-avoid">
                   <Image width={1200} src={img} alt={`${title} - Image ${i + 2}`} class="w-full h-auto" loading="lazy" />
                 </div>
               ))}
