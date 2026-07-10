@@ -7,20 +7,17 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        heading: ["Fraunces", ...defaultTheme.fontFamily.serif],
+        heading: ["Archivo", "Inter", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        sage: {
-          50: '#f4f7ee',
-          100: '#e6eed6',
-          200: '#cfddb0',
-          300: '#b1c684',
-          400: '#7fa05c',
-          500: '#678846',
-          600: '#4f6b35',
-          700: '#3e542b',
-          800: '#334324',
-          900: '#2a381f',
+        cream: '#faf9f5',
+        bronze: {
+          DEFAULT: '#b28050',
+          dark: '#96683d',
+        },
+        sand: {
+          DEFAULT: '#e6bf94',
+          dark: '#dcae7a',
         },
       },
     },

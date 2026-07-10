@@ -2,13 +2,13 @@
   "socials": [
     {
       "target": "_blank",
-      "name": "Instagram",
-      "link": "https://instagram.com/"
+      "name": "LinkedIn",
+      "link": "https://linkedin.com/"
     },
     {
       "target": "_blank",
-      "name": "LinkedIn",
-      "link": "https://linkedin.com/"
+      "name": "Instagram",
+      "link": "https://instagram.com/"
     }
   ]
 }

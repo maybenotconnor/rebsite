@@ -11,6 +11,7 @@ gallery:
   - assets/dramaturgy-6.jpg
   - assets/dramaturgy-7.jpg
 date: "2022-2023"
+order: 5
 location: Willimantic, CT
 role: Dramaturg
 ---

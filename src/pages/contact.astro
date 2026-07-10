@@ -9,39 +9,38 @@ const email = 'rebeccamristow@gmail.com';
 <Layout title="Contact | R.M. Ristow">
   <div class="relative">
     <div class="mx-auto px-8 md:max-w-7xl">
-      <section class="py-12 md:py-20">
-        <h1 class="font-heading text-5xl md:text-7xl font-bold tracking-wide mb-6">Let's Connect</h1>
-        <p class="font-heading text-lg md:text-xl font-light text-zinc-600 mb-12 max-w-3xl">
-          Always looking for new opportunities in theatre, film, and community engagement. Reach out below.
+      <section class="py-12 md:py-16">
+        <h1 class="font-heading text-5xl md:text-7xl font-bold uppercase tracking-wide text-bronze mb-6">Let's Connect!</h1>
+        <p class="text-sand mb-16 max-w-3xl">
+          Always looking for new opportunities in theatre, film, and community engagement.<br />
+          Reach out below.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start pb-12">
           <div>
-            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Email</h2>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold uppercase tracking-wide text-bronze mb-8">Email</h2>
             <a
               href={`mailto:${email}`}
-              class="inline-block border border-sage-700 text-sage-700 px-6 py-3 text-sm tracking-wide hover:bg-sage-700 hover:text-white transition-colors break-all"
+              class="inline-block bg-sand text-bronze rounded-full px-8 py-2.5 text-sm font-semibold tracking-widest uppercase hover:bg-sand-dark transition-colors no-underline break-all"
             >
               {email}
             </a>
           </div>
 
           <div>
-            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Elsewhere</h2>
-            <ul class="flex flex-col gap-3">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold uppercase tracking-wide text-bronze mb-8">Elsewhere</h2>
+            <div class="flex flex-wrap gap-4">
               {footer.data.socials.map(social => (
-                <li>
-                  <a
-                    href={social.link}
-                    rel="noopener"
-                    target={social.target}
-                    class="inline-block text-zinc-700 hover:text-sage-700 border-b border-transparent hover:border-sage-700 transition-colors"
-                  >
-                    {social.name}
-                  </a>
-                </li>
+                <a
+                  href={social.link}
+                  rel="noopener"
+                  target={social.target}
+                  class="inline-block bg-sand text-bronze rounded-full px-8 py-2.5 text-sm font-semibold tracking-widest uppercase hover:bg-sand-dark transition-colors no-underline"
+                >
+                  {social.name}
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>

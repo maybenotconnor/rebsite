@@ -5,17 +5,17 @@ const general = await getEntry('settings','general');
 const footer = await getEntry('settings','footer');
 ---
 
-<footer class="block relative bg-sage-700 w-full text-center py-20 text-sage-50">
+<footer class="block relative bg-bronze w-full text-center py-20 text-cream">
   <div class="mx-auto px-8 md:max-w-7xl">
     <p class="mb-6">
-      <a href="mailto:rebeccamristow@gmail.com" class="no-underline text-sage-50 hover:text-white transition-colors">rebeccamristow@gmail.com</a>
+      <a href="mailto:rebeccamristow@gmail.com" class="no-underline text-cream hover:text-white transition-colors">rebeccamristow@gmail.com</a>
     </p>
     <div class="flex justify-center gap-8 mb-8">
-      {footer.data.socials.map(social=><a href={social.link} class="no-underline relative inline-block text-sage-100 hover:text-white transition-colors" title={social.name} aria-label={social.name} rel="noopener" target={social.target}>
+      {footer.data.socials.map(social=><a href={social.link} class="no-underline relative inline-block text-cream hover:text-white transition-colors" title={social.name} aria-label={social.name} rel="noopener" target={social.target}>
         <span set:html={social.name}></span>
       </a>)}
     </div>
-    <p class="m-0 text-sm text-sage-200">
+    <p class="m-0 text-sm text-sand">
       <span>&copy;&nbsp;</span>
       <span>{general.data.title}&nbsp;</span>
       <span set:html={new Date().getFullYear()}></span>

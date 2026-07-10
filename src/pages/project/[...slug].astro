@@ -5,11 +5,7 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection("projects");
-  const projects = projectEntries.sort((a, b) => {
-    const yearA = parseInt(a.data.date.split('-').pop());
-    const yearB = parseInt(b.data.date.split('-').pop());
-    return yearB - yearA;
-  });
+  const projects = projectEntries.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
   return projects.map((entry, index) => ({
     params: { slug: entry.slug },
@@ -33,42 +29,42 @@ const { title, image, gallery, date, tag, location, role, credit, link } = entry
 
         <!-- Title and metadata -->
         <div class="max-w-4xl mx-auto mb-12">
-          <h1 class="font-heading text-4xl md:text-5xl font-light tracking-wide mb-8">{title}</h1>
+          <h1 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-bronze mb-8">{title}</h1>
 
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             {location && (
               <div>
-                <h2 class="text-sm font-medium uppercase tracking-wider text-zinc-400 mb-1">Location</h2>
-                <p class="text-zinc-800">{location}</p>
+                <h2 class="text-sm font-medium uppercase tracking-wider text-sand mb-1">Location</h2>
+                <p class="text-bronze">{location}</p>
               </div>
             )}
             {date && (
               <div>
-                <h2 class="text-sm font-medium uppercase tracking-wider text-zinc-400 mb-1">Date</h2>
-                <p class="text-zinc-800">{date}</p>
+                <h2 class="text-sm font-medium uppercase tracking-wider text-sand mb-1">Date</h2>
+                <p class="text-bronze">{date}</p>
               </div>
             )}
             {role && (
               <div>
-                <h2 class="text-sm font-medium uppercase tracking-wider text-zinc-400 mb-1">Role</h2>
-                <p class="text-zinc-800">{role}</p>
+                <h2 class="text-sm font-medium uppercase tracking-wider text-sand mb-1">Role</h2>
+                <p class="text-bronze">{role}</p>
               </div>
             )}
             {credit && (
               <div>
-                <h2 class="text-sm font-medium uppercase tracking-wider text-zinc-400 mb-1">Credit</h2>
-                <p class="text-zinc-800">{credit}</p>
+                <h2 class="text-sm font-medium uppercase tracking-wider text-sand mb-1">Credit</h2>
+                <p class="text-bronze">{credit}</p>
               </div>
             )}
             {link && (
               <div>
-                <h2 class="text-sm font-medium uppercase tracking-wider text-zinc-400 mb-1">Link</h2>
-                <a href={link.url} target="_blank" rel="noopener" class="text-zinc-800 underline hover:text-sage-700 transition-colors">{link.text}</a>
+                <h2 class="text-sm font-medium uppercase tracking-wider text-sand mb-1">Link</h2>
+                <a href={link.url} target="_blank" rel="noopener" class="text-bronze underline hover:text-bronze-dark transition-colors">{link.text}</a>
               </div>
             )}
           </div>
 
-          <div class="prose prose-zinc max-w-none">
+          <div class="prose max-w-none text-bronze prose-p:text-bronze prose-em:text-bronze prose-strong:text-bronze">
             <Content />
           </div>
         </div>
@@ -98,7 +94,7 @@ const { title, image, gallery, date, tag, location, role, credit, link } = entry
               <span class="relative block transition duration-500 ease-in-out transform rounded hover:scale-105">
                 <Image width={244} class="relative block object-cover object-center max-w-[260px] h-auto max-h-[260px]" loading="lazy" alt={previous.data.title} src={previous.data.image} />
               </span>
-              <span class="absolute max-w-[100px] -translate-y-1/2 -translate-x-full left-[30px] top-1/2 bg-white py-1 px-2">Previous Project</span>
+              <span class="absolute max-w-[100px] -translate-y-1/2 -translate-x-full left-[30px] top-1/2 bg-cream text-bronze py-1 px-2">Previous Project</span>
             </a>
           ) : <span />}
           {next ? (
@@ -106,7 +102,7 @@ const { title, image, gallery, date, tag, location, role, credit, link } = entry
               <span class="relative block transition duration-500 ease-in-out transform rounded hover:scale-105">
                 <Image width={244} class="relative block object-cover object-center max-w-[260px] h-auto max-h-[260px]" loading="lazy" alt={next.data.title} src={next.data.image} />
               </span>
-              <span class="absolute max-w-[100px] -translate-y-1/2 translate-x-full right-[30px] top-1/2 bg-white py-1 px-2">Next Project</span>
+              <span class="absolute max-w-[100px] -translate-y-1/2 translate-x-full right-[30px] top-1/2 bg-cream text-bronze py-1 px-2">Next Project</span>
             </a>
           ) : <span />}
         </div>

@@ -5,15 +5,14 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
-import headshot from '../assets/headshot.jpg';
+import hero1 from '../assets/hero-1.jpg';
+import hero2 from '../assets/hero-2.jpg';
+import hero3 from '../assets/hero-3.jpg';
+import aboutPhoto from '../assets/about-photo.jpg';
 import burnBookCabaret from '../assets/burn-book-cabaret.png';
 
 const allProjects = await getCollection('projects');
-const projects = allProjects.sort((a, b) => {
-  const yearA = parseInt(a.data.date.split('-').pop());
-  const yearB = parseInt(b.data.date.split('-').pop());
-  return yearB - yearA;
-});
+const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 
 <Layout title="Rebecca May Ristow | Theatre Artist & Administrator">
@@ -21,59 +20,80 @@ const projects = allProjects.sort((a, b) => {
     <div class="mx-auto px-8 md:max-w-7xl">
 
       <!-- Hero Section -->
+      <section class="py-8 md:py-12">
+        <div class="flex flex-col md:flex-row gap-8 md:gap-10 items-start">
+          <div class="w-full md:w-[38%] shrink-0">
+            <div class="grid grid-cols-2 gap-4 md:gap-6">
+              <Image src={hero1} alt="Rebecca May Ristow" width={500} densities={[1, 2]} class="w-full h-auto" />
+              <Image src={hero2} alt="Rebecca May Ristow" width={500} densities={[1, 2]} class="w-full h-auto" />
+            </div>
+            <p class="text-xs text-sand mt-3 lowercase">photos: jessica leah photography</p>
+          </div>
+          <div class="flex-1 md:pt-20">
+            <p class="text-sm text-sand lowercase leading-snug mb-3">
+              producer &amp; production manager at the bushnell<br />
+              hartford stage board member
+            </p>
+            <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold uppercase leading-[0.95] tracking-wide text-bronze">
+              Rebecca<br />May<br />Ristow
+            </h1>
+            <p class="font-heading italic text-xl md:text-2xl text-sand mt-4 lowercase">theatre artist</p>
+          </div>
+          <div class="w-full md:w-[24%] shrink-0 md:mt-6">
+            <Image src={hero3} alt="Rebecca May Ristow" width={500} densities={[1, 2]} class="w-full h-auto object-cover aspect-[3/4] object-top" />
+          </div>
+        </div>
+      </section>
+
+      <!-- About Me Section -->
       <section class="py-12 md:py-20">
-        <h1 class="font-heading text-5xl md:text-7xl font-bold tracking-wide mb-12">Rebecca May Ristow</h1>
-        <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
-          <div class="w-full md:w-1/3 shrink-0">
-            <Image src={headshot} alt="Rebecca May Ristow" width={400} class="w-full h-auto" />
-            <p class="text-xs text-zinc-400 mt-2">Photo: Daniel Gallipoli</p>
+        <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase tracking-wide text-bronze mb-10">About Me</h2>
+        <div class="flex flex-col md:flex-row gap-10 md:gap-14 items-start">
+          <div class="w-full md:w-[28%] shrink-0">
+            <Image src={aboutPhoto} alt="Rebecca May Ristow" width={500} densities={[1, 2]} class="w-full h-auto" />
           </div>
           <div class="flex-1">
-            <h2 class="font-heading text-2xl md:text-3xl font-light tracking-wide mb-6">Theatre Artist & Administrator</h2>
-            <div class="space-y-4 text-zinc-700 leading-relaxed">
+            <div class="space-y-4 leading-relaxed">
               <p>Rebecca May Ristow is a Hartford based production manager, producer, and director. She is currently developing new works and managing productions at The Bushnell Center for the Performing Arts, serving as Assistant Manager of Producing and Production. She is a Summa Cum Laude graduate with both a BA in Theatre (Directing & Dramaturgy) and an MBA (Marketing).</p>
               <p>Outside of The Bushnell, Rebecca is a frequent collaborator in the Greater Hartford arts sphere, producing independent films, assistant directing at TheaterWorks and Hartford Stage, and volunteering with various local non-profits. She is currently serving a 3-year term on The Hartford Stage young professionals board, assisting in non-profit advocacy. Previous to her current role, she spent three years as a manager in the performance operations department at University of Hartford, specializing in patron communication and outreach.</p>
               <p>She is most passionate about life-long learning and growing accessibility within the arts community!</p>
             </div>
             <div class="mt-8">
-              <a href="/portfolio" class="inline-block border border-zinc-900 px-6 py-3 text-sm tracking-wide hover:bg-sage-700 hover:border-sage-700 hover:text-white transition-colors">View Portfolio</a>
+              <a href="/about" class="inline-block bg-sand text-bronze rounded-full px-8 py-2.5 text-sm font-semibold tracking-widest uppercase hover:bg-sand-dark transition-colors no-underline">Read More</a>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Upcoming Section -->
-      <section class="py-12 md:py-20 border-t border-zinc-200">
+      <section class="py-12 md:py-20">
         <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-          <div class="flex-1 order-2 md:order-1">
-            <h2 class="font-heading text-4xl md:text-5xl font-light italic tracking-wide mb-6">upcoming...</h2>
-            <p class="text-zinc-700 leading-relaxed mb-8">
+          <div class="flex-1 order-2 md:order-1 md:pl-[8%]">
+            <p class="text-sm text-sand lowercase mb-2">the burn book cabaret</p>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wide text-bronze mb-6">Upcoming...</h2>
+            <p class="text-sand leading-relaxed mb-8">
               Rebecca is making her NYC directing and producing debut at <strong>54 Below</strong> on November 13th at 9:30pm! <em>The Burn Book Cabaret</em> is an evening celebrating musical theatre's meanest. Tonight, you <em>can</em> sit with us.
             </p>
-            <a href="http://54below.org/burnbook" target="_blank" rel="noopener noreferrer" class="inline-block bg-zinc-700 text-white px-10 py-3 text-sm tracking-wide hover:bg-sage-700 transition-colors">Tickets</a>
+            <a href="http://54below.org/burnbook" target="_blank" rel="noopener noreferrer" class="inline-block bg-sand text-bronze rounded-full px-10 py-2.5 text-sm font-semibold tracking-widest uppercase hover:bg-sand-dark transition-colors no-underline">Tickets</a>
           </div>
           <div class="w-full md:w-1/2 order-1 md:order-2">
             <a href="http://54below.org/burnbook" target="_blank" rel="noopener noreferrer">
-              <Image src={burnBookCabaret} alt="The Burn Book Cabaret at 54 Below — November 13th" class="w-full h-auto" />
+              <Image src={burnBookCabaret} alt="The Burn Book Cabaret at 54 Below — November 13th" class="w-full h-auto rounded-lg" />
             </a>
           </div>
         </div>
       </section>
 
       <!-- Portfolio Preview Section -->
-      <section class="py-12 md:py-20 border-t border-zinc-200">
-        <h2 class="font-heading text-3xl md:text-4xl font-light tracking-wide text-center mb-4">My Project Portfolio</h2>
-        <div class="text-center mb-4">
-          <h3 class="font-heading text-lg font-light tracking-wide">Explore My Work</h3>
-        </div>
-        <p class="text-center text-zinc-600 mb-12 max-w-lg mx-auto">Head to my portfolio to see a selection of my theatrical and film projects!</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section class="py-12 md:py-20">
+        <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase tracking-wide text-bronze text-center mb-12">Project Portfolio</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-5xl mx-auto">
           {projects.map((project) => (
-            <Card slug={project.slug} title={project.data.title} image={project.data.image} tags={project.data.tag} />
+            <Card slug={project.slug} title={project.data.title} image={project.data.image} />
           ))}
         </div>
-        <div class="text-center mt-12">
-          <a href="/portfolio" class="inline-block border border-zinc-900 px-6 py-3 text-sm tracking-wide hover:bg-sage-700 hover:border-sage-700 hover:text-white transition-colors">View More Projects</a>
+        <div class="text-center mt-10">
+          <a href="/portfolio" class="inline-block bg-sand text-bronze rounded-full px-8 py-2.5 text-sm font-semibold tracking-widest uppercase hover:bg-sand-dark transition-colors no-underline">View More Projects</a>
         </div>
       </section>
 

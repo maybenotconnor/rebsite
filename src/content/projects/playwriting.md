@@ -11,6 +11,7 @@ gallery:
   - assets/playwriting-6.jpg
   - assets/playwriting-7.jpg
 date: "2022"
+order: 6
 location: Willimantic, CT
 role: Playwright & Director
 link:
